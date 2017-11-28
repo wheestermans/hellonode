@@ -29,7 +29,7 @@ node {
          * Second, the 'latest' tag.
          * Pushing multiple tags is cheap, as all the layers are reused. */
         docker.withRegistry('https://dockerdtrtest.toyota-europe.com', 'toyota-dtr') {
-            app.push("${env.BUILD_NUMBER}")
+            /* app.push("${env.BUILD_NUMBER}") */
             app.push("latest")
         }
     }
