@@ -1,4 +1,4 @@
-# use a node base image
+# Use a node v9 base image
 FROM node:9
 
 # set maintainer
