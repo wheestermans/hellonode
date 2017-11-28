@@ -10,5 +10,11 @@ node {
         app = docker.build("toyota/hellonode")
     }
 
+    stage('Test image') {
+        app.inside {
+            sh 'node --version'
+        }
+    }
+
 }
 
