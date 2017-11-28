@@ -13,7 +13,6 @@ node {
     stage('Test image') {
         app.inside {
             sh 'node --version'
-            sh 'curl -f http://localhost:8000'
         }
     }
 
