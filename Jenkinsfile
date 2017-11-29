@@ -17,8 +17,8 @@ node {
     }
 
     stage('Push image') {
-        docker.withRegistry('https://dockerdtrtest.toyota-europe.com', 'toyota-dtr') {
-            /* app.push("${env.BUILD_NUMBER}") */
+        docker.withDockerRegistry([credentialsId: 'toyota-dtr', url: 'http:\\\\dockerdtrtest.toyoyta-europe.com']) {
+	    /* app.push("${env.BUILD_NUMBER}") */
             app.push("latest")
         }
     }
