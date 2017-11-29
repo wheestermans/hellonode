@@ -9,7 +9,7 @@ node {
     stage('Build image') {
         echo 'Building the image'
         app = docker.build("toyota/hellonode")
-        sh docker images
+        sh 'docker images'
     }
 
     stage('Test image') {
