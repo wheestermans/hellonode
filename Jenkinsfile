@@ -1,31 +1,27 @@
-pipeline {
-  
-  agent any
-  
-  stages {
-    stage('Build') {
+node {
 
-      steps {
+    def app
 
-	step([$class: 'DockerBuilderPublisher', cleanImages: true, cleanupWithJenkinsJobDelete: true, cloud: 'lxdocapt14.toyota-europe.com', dockerFileDirectory: '', pullCredentialsId: '', pushCredentialsId: '', pushOnSuccess: false, tagsString: 'toyota/hellonode'])
-
-      }
+    stage('Clone repository') {
+        checkout scm
     }
 
-  stage('Test') {
-      steps {
-          echo 'Hello from Test'
-      }
+    stage('Build image') {
+        app = docker.build("toyota/hellonode")
     }
 
-    stage('Deploy') {
-      
-      steps {
-          echo 'Hello from Deploy'
-      }
-      
+    stage('Test image') {
+        app.inside {
+            sh 'node --version'
+        }
     }
-  
-  }
-  
+
+    stage('Push image') {
+        docker.withRegistry('http://dockerdtrtest.toyota-europe.com', 'toyota-dtr') {
+	    /* app.push("${env.BUILD_NUMBER}") */
+	    app.push("latest")
+        }
+    }
+
 }
+
