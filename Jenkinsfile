@@ -9,7 +9,6 @@ node {
     stage('Build image') {
         echo 'Building the image'
         app = docker.build("toyota/hellonode")
-        sh 'docker images'
     }
 
     stage('Test image') {
@@ -21,6 +20,7 @@ node {
 
     stage('Push image') {
         echo 'Pushing the image'
+        sh 'docker login http://dockerdtrtest.toyota-europe.com -u docker -p toydocker123'
         docker.withRegistry('http://dockerdtrtest.toyota-europe.com/', 'toyota-dtr') {
 	    /* app.push("${env.BUILD_NUMBER}") */
 	    app.push("latest")
