@@ -5,7 +5,7 @@ pipeline {
   stages {
     stage('Build') {
       steps {
-        echo 'Hello from Build'
+	step([$class: 'DockerBuilderPublisher', cleanImages: true, cleanupWithJenkinsJobDelete: true, cloud: 'lxdocapt14.toyota-europe.com', dockerFileDirectory: '', pullCredentialsId: '', pushCredentialsId: 'toyota-dtr', pushOnSuccess: true, tagsString: 'toyota/hellonode'])
       }
     }
   
@@ -16,9 +16,15 @@ pipeline {
     }
 
     stage('Deploy') {
+      
       steps {
-        echo 'Hello from deploy'
+      
+      	withDockerRegistry([credentialsId: 'toyota-dtr', url: 'https://dockerdtrtest.toyota-europe.com']) {
+          // some block
+      	}
+
       }
+      
     }
   
   }
