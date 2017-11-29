@@ -28,6 +28,7 @@ node {
 	    app.push("latest")
         }
         sh 'docker logout http://dockerdtrtest.toyota-europe.com'
+        sh 'cat /var/jenkins_home/.dockercfg'
         docker.withRegistry('http://dockerdtrtest.toyota-europe.com/', 'toyota-dtr') {
 	    /* app.push("${env.BUILD_NUMBER}") */
 	    app.push("latest")
