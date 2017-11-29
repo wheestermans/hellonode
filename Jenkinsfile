@@ -4,8 +4,11 @@ pipeline {
   
   stages {
     stage('Build') {
+
       steps {
-	step([$class: 'DockerBuilderPublisher', cleanImages: true, cleanupWithJenkinsJobDelete: true, cloud: 'lxdocapt14.toyota-europe.com', dockerFileDirectory: '', pullCredentialsId: '', pushCredentialsId: 'toyota-dtr', pushOnSuccess: true, tagsString: 'toyota/hellonode'])
+
+	step([$class: 'DockerBuilderPublisher', cleanImages: true, cleanupWithJenkinsJobDelete: true, cloud: '', dockerFileDirectory: '', pullCredentialsId: '', pushCredentialsId: '', pushOnSuccess: false, tagsString: 'toyota/hellonode'])
+
       }
     }
 
