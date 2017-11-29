@@ -1,27 +1,26 @@
-node {
-
-    def app
-
-    stage('Clone repository') {
-        checkout scm
+pipeline {
+  
+  agent any
+  
+  stages {
+    stage('Build') {
+      steps {
+        echo 'Hello from Build'
+      }
+    }
+  
+  stage('Test') {
+      steps {
+          echo 'Hello from Test'
+      }
     }
 
-    stage('Build image') {
-        app = docker.build("toyota/hellonode")
+    stage('Deploy') {
+      steps {
+        echo 'Hello from deploy'
+      }
     }
-
-    stage('Test image') {
-        app.inside {
-            sh 'node --version'
-        }
-    }
-
-    stage('Push image') {
-        docker.withRegistry('http://dockerdtrtest.toyota-europe.com', 'toyota-dtr') {
-	    /* app.push("${env.BUILD_NUMBER}") */
-	    app.push("latest")
-        }
-    }
-
+  
+  }
+  
 }
-
