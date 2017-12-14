@@ -1,4 +1,5 @@
-ipeline {
+pipeline {
+
     agent { remote-slave } 
     
     stages {
