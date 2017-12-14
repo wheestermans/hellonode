@@ -1,4 +1,7 @@
-node {
+ipeline {
+    agent { remote-slave } 
+    
+    stages {
 
     def app
 
@@ -34,6 +37,7 @@ node {
 	    app.push("latest")
         }
 
+    }
     }
 
 }
