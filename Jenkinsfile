@@ -1,4 +1,4 @@
-node('remote-slave') {
+node {
 
     def app
 
