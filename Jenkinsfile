@@ -1,6 +1,6 @@
 pipeline {
 
-    agent { remote-slave } 
+    agent { remote-slave-zlinux } 
     
     stages {
 
